@@ -1,0 +1,97 @@
+Yes — 100%.
+A short Product Brief + ADR is exactly what your AI assistant (or any dev) needs to generate a functional MVP fast.
+
+Below is a tight, build-ready version specifically for your one-app MVP — the Social Investor App.
+It’s minimal, unambiguous, and optimized for AI-assisted development.
+
+🚀 Glass Box MVP – Product Brief
+🎯 Mission
+
+To make generosity transparent — turning donations into visible, measurable social investments.
+
+“Don’t just donate. Invest in change — and see your impact, clearly.”
+
+🧩 Core Concept
+
+A mobile-first web app where users:
+
+Find their cause (SDG self-assessment → personalized impact profile)
+
+Invest in a WETF (Glass Box–vetted charity funds)
+
+See their Return on Impact (live dashboard of real-world results)
+
+👤 Target User
+
+Social Investor (SI) — ethically-minded donor who wants transparency, proof, and measurable impact.
+Pain: “I never know what my donation actually does.”
+Promise: “Now you can — every pound tells its story.”
+
+💡 Key MVP Features
+Feature	Description	Must-have
+SDG Self-Assessment	Tap cards for causes (Education, Health, Water, etc.) → auto-generates radar “Impact Profile.”	✅
+WETF Discovery	Scrollable cards showing each fund: title, raised amount, lives impacted, % growth.	✅
+“Our Vetting” Modal	Tap fund → see 3 transparency criteria (Financial Health, Accountability, Impact Tracking).	✅
+Invest Flow	Simple one-time payment (Stripe Checkout).	✅
+Impact Dashboard	“Your £25 = 100 meals” equivalency + small bar or donut chart.	✅
+Success Animation	“Your seed has taken root” (visual feedback).	✅
+🪟 Messaging Across the App
+Screen	Headline	Supporting Copy
+Welcome	“See your impact, clearly.”	“Every pound you invest changes lives — and you can track every result.”
+SDG Selection	“Let’s find your impact focus.”	“Choose the causes that matter to you most.”
+WETF Cards	“Invest in trusted, verified impact funds.”	“Every fund is Glass Box–vetted for transparency and accountability.”
+Our Vetting Modal	“How we verify impact.”	“We partner only with charities that meet our standards for financial health, governance, and measurable outcomes.”
+Investment Flow	“Slide to invest in change.”	“You’re not donating — you’re investing in impact.”
+Success Screen	“Your seed has taken root.”	“Your £25 is already at work — transforming lives.”
+Impact Dashboard	“See your Return on Impact.”	“Track how your investments translate into meals served, wells built, and lives changed.”
+
+Tone: hopeful, confident, clean, purposeful.
+
+📈 MVP Success Criteria
+
+A user can complete the full journey:
+SDG self-assessment → select fund → view vetting → invest → see impact.
+
+Payments and KYC integrated (Stripe).
+
+Dashboard shows mock or real impact equivalencies.
+
+Primary KPI: % of users reaching the “Success” screen.
+
+⚙️ Architecture Decision Record (ADR)
+Decision
+
+Build the MVP as a single Next.js PWA backed by a simple Node/NestJS API + Stripe integration.
+
+Context
+
+We need one cohesive demo app — fast. The investor experience is the product story.
+Charity and admin tools can follow once traction is proven.
+
+Choice
+
+Frontend: Next.js (React, Tailwind), deploy on Vercel.
+
+Backend: Node/NestJS with PostgreSQL (hosted, e.g., Supabase or Neon).
+
+Payments & KYC: Stripe Checkout + Stripe Identity.
+
+Data: Seed with mock WETF & impact stats for demo.
+
+Auth: Simple JWT; optional Google sign-in.
+
+Why
+
+✅ Focuses on the emotional, innovative core (transparency + impact)
+✅ Simplifies deployment and team workflow (one app, one CI/CD)
+✅ Flexible enough to expand into a full platform later (charity/admin layers)
+
+Trade-offs
+
+No charity-side data entry yet (impact manually seeded).
+
+Limited admin tools; compliance handled manually for demo.
+
+Status
+
+Approved for MVP Build — optimized for hackathon demo + investor showcase.

@@ -1,0 +1,67 @@
+🧠 The One App to Present: The Social Investor App
+
+Everything — the innovation, the emotion, the mission — lives here.
+This is the heart of “Glass Box”: the moment an ordinary donor becomes a Social Investor who can see their impact.
+
+Forget the admin side. Forget charity onboarding.
+Show the investor experience — it’s the revolution.
+
+🚀 What’s Truly Innovative (and what to showcase)
+🪟 1️⃣ Radical Transparency — The “Glass Box” Vetting Moment
+
+“Every charity here has passed our Glass Box Scorecard: verified governance, financial health, and real-world impact tracking.”
+
+✨ Why it’s innovative:
+Nobody else lets donors see inside the charity ecosystem this clearly.
+Show the “Our Vetting” modal with checkmarks like:
+✅ 75%+ funds to programs
+✅ Independent Board
+✅ Proven impact reporting
+That’s your differentiator — it feels like fintech but for good.
+
+🌍 2️⃣ Personalized Impact Investing — The SDG Self-Assessment
+
+“Instead of scrolling through hundreds of causes, you tell us what you care about — and we build your Impact Profile.”
+
+✨ Why it’s innovative:
+It turns charity giving into an impact portfolio — same UX language as financial investing, but for social good.
+Visual cue: the spider/radar chart that fills in live as users choose SDGs (Education, Health, Clean Water…).
+
+You’re reframing donations as personalized social impact portfolios.
+
+💰 3️⃣ The “Return on Impact” Dashboard
+
+“Your £25 has provided 100 meals, built 2 classrooms, and planted 5 trees.”
+
+✨ Why it’s innovative:
+No charity platform closes the feedback loop this simply and beautifully.
+This is your “aha” moment — clear, quantified impact that feels like a financial dashboard but radiates purpose.
+
+🧩 The Narrative Arc (for your demo)
+
+1. Start with the problem (20 sec):
+
+“We give. We hope it helps. But we never see what happens. Glass Box fixes that.”
+
+2. SDG Self-Assessment (1 min):
+Show selecting causes → radar chart builds → “Here’s your unique Impact Profile.”
+
+3. WETF Discovery (1 min):
+Scroll WETF cards → tap one → show “Our Vetting” modal (“Glass Box transparency”).
+
+4. Invest (30 sec):
+Click “Invest £25” → success animation (“seed grows into tree”).
+
+5. My Impact (1 min):
+Dashboard with “Your £25 = 100 meals” → maybe add “up 23% since June.”
+
+6. Close (30 sec):
+
+“This is how we revolutionize Ummah spending: from blind charity to visible, verifiable social investment.”
+
+💎 Your Headline Message
+
+“Glass Box turns donations into transparent impact portfolios — the world’s first platform where generosity has a dashboard.”
+
+That’s the most innovative part of your mission.
+Everything else — the scorecard, the SDGs, the UI — serves that one idea.

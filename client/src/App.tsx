@@ -3,24 +3,23 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Header } from "@/components/layout/header";
-import Home from "@/pages/home";
-import Dashboard from "@/pages/dashboard";
-import Marketplace from "@/pages/marketplace";
-import Transparency from "@/pages/transparency";
-import CharityDetail from "@/pages/charity-detail";
-import WetfDetail from "@/pages/wetf-detail";
+import Welcome from "@/pages/welcome";
+import SDGSelection from "@/pages/sdg-selection";
+import Discover from "@/pages/discover";
+import FundDetail from "@/pages/fund-detail";
+import Success from "@/pages/success";
+import ImpactDashboard from "@/pages/impact-dashboard";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/marketplace" component={Marketplace} />
-      <Route path="/transparency" component={Transparency} />
-      <Route path="/charity/:id" component={CharityDetail} />
-      <Route path="/wetf/:id" component={WetfDetail} />
+      <Route path="/" component={Welcome} />
+      <Route path="/sdg" component={SDGSelection} />
+      <Route path="/discover" component={Discover} />
+      <Route path="/fund/:slug" component={FundDetail} />
+      <Route path="/success" component={Success} />
+      <Route path="/dashboard" component={ImpactDashboard} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -30,11 +29,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1">
-            <Router />
-          </main>
+        <div className="min-h-screen">
+          <Router />
         </div>
         <Toaster />
       </TooltipProvider>

@@ -1,0 +1,232 @@
+BUILD PROMPT — GLASS BOX (ONE-APP MVP, NO AUTH/PAYMENTS)
+Objective
+
+Ship a mobile-first, static Next.js PWA that demonstrates the core story:
+
+Pick SDGs → 2) Browse a WETF → 3) See “Glass Box” Vetting → 4) Fake Invest → 5) View Return on Impact.
+
+No servers, no logins, no Stripe. All state is client-side with localStorage.
+
+Tech (simple + fast)
+
+Next.js 14 (App Router) + TypeScript
+
+TailwindCSS, shadcn/ui (or Radix primitives)
+
+recharts for charts (radar + donut)
+
+localStorage for persistence (no DB)
+
+Lottie (optional) for success animation
+
+Deploy: Vercel (static export-ready)
+
+App Structure
+/app
+  /page.tsx                 -> Welcome
+  /sdg/page.tsx             -> SDG selection + radar preview
+  /discover/page.tsx        -> WETF list (one seed fund)
+  /fund/[slug]/page.tsx     -> WETF detail + “Our Vetting” modal
+  /success/page.tsx         -> Success screen
+  /dashboard/page.tsx       -> Impact dashboard
+  /manifest.webmanifest     -> PWA manifest
+  /icons/*                  -> PWA icons
+/components                 -> UI: Card, Modal, RadarChart, DonutChart, EquivalencyCard
+/lib
+  /copy.ts                  -> all strings
+  /impact.ts                -> equivalency formulas
+  /state.ts                 -> tiny store (zustand or React context) + localStorage sync
+  /seed.ts                  -> mock data for WETFs
+/styles/globals.css
+
+Seed Data (/lib/seed.ts)
+export const WETFS = [
+  {
+    slug: "health-wellbeing",
+    title: "Health & Wellbeing Fund",
+    description: "Scale vaccinations, primary care, and mental health access.",
+    icon: "🩺",
+    raisedDisplay: "£2.4m raised",
+    livesImpactedDisplay: "150,000+ lives impacted",
+    growthDisplay: "↑ 23% since June",
+    sdgs: ["Health & Wellbeing", "Clean Water & Sanitation"],
+    vetting: {
+      financialHealth: true,
+      governance: true,
+      impactTracking: true
+    }
+  }
+];
+
+Impact Equivalencies (/lib/impact.ts)
+export const IMPACT_RATES = {
+  mealGBP: 0.25,       // £0.25 = 1 meal
+  classroomGBP: 12500, // £12,500 = 1 classroom
+  wellGBP: 2500        // £2,500 = 1 well
+};
+
+export function calculateEquivalencies(totalGBP: number) {
+  return {
+    meals: Math.floor(totalGBP / IMPACT_RATES.mealGBP),
+    classrooms: +(totalGBP / IMPACT_RATES.classroomGBP).toFixed(2),
+    wells: +(totalGBP / IMPACT_RATES.wellGBP).toFixed(2)
+  };
+}
+
+Minimal Client Store (/lib/state.ts)
+
+Keep in-memory state with hydration to localStorage:
+
+selectedSDGs: string[]
+
+impactProfile: number[] (8-dim radar values 0–100)
+
+totalInvestedGBP: number (fake investment tally)
+
+Provide actions:
+
+setSDGs(sdgs), buildImpactProfile(sdgs)
+
+fakeInvest(amountGBP) → increments totalInvestedGBP
+
+Auto-save to localStorage on change; load on app start.
+
+Copy (use as-is, /lib/copy.ts)
+export const copy = {
+  tagline: "See your impact, clearly.",
+  valueProp: "Every pound you invest changes lives — and you can track every result.",
+  sdgTitle: "Let’s find your impact focus.",
+  sdgSub: "Choose the causes that matter to you most.",
+  discoverTitle: "Invest in trusted, verified impact funds.",
+  vettingTitle: "How we verify impact",
+  vettingBullets: [
+    "Financial Health: 75%+ program spend",
+    "Accountability: independent board & public financials",
+    "Impact Tracking: outcomes measured and reported"
+  ],
+  investPrompt: "How much would you like to invest?",
+  investCTA: "Invest now (demo)",
+  successH1: "Your seed has taken root.",
+  successP: "Your investment is already at work — transforming lives.",
+  dashboardH1: "See your Return on Impact.",
+  dashboardKPI: "Total invested",
+  eqMeals: "Meals provided",
+  eqClassrooms: "Classrooms built",
+  eqWells: "Wells funded"
+};
+
+Screens (exact behavior)
+
+Welcome (/)
+
+H1: “See your impact, clearly.”
+
+Sub: “Every pound you invest…”
+
+CTA: “Get started” → /sdg
+
+SDG Selection (/sdg)
+
+Grid of 8 SDG cards (Health, Education, Clean Water & Sanitation, Poverty & Hunger, Responsible Consumption, Infrastructure, Energy, Waste)
+
+On select, show count “You’ve selected X areas”.
+
+Button “Build my Impact Profile” → animate a radar chart from selections (client-only), then “Continue” → /discover.
+
+Discover (/discover)
+
+Section title: “Invest in trusted, verified impact funds.”
+
+Show 1 WETF card (from seed): title, raised, lives, growth → “View fund”.
+
+WETF Detail (/fund/health-wellbeing)
+
+Tabs: Mission | Impact | Our Vetting
+
+“Our Vetting” modal shows the 3 checkmarks (use vettingBullets copy).
+
+“How much would you like to invest?” presets (£25 / £50 / £100) + custom input.
+
+Invest now (demo) → calls fakeInvest(amount), route to /success.
+
+Success (/success)
+
+H1: “Your seed has taken root.”
+
+Sub: “Your investment is already at work…”
+
+CTA: “View my impact” → /dashboard.
+
+Optional: Lottie seed→tree animation.
+
+Dashboard (/dashboard)
+
+H1: “See your Return on Impact.”
+
+KPI “Total invested: £X”
+
+3 equivalency cards: meals, classrooms, wells (computed from total invested).
+
+Donut chart of portfolio (single slice for MVP).
+
+Mini line chart of “My investment over time” using timestamps stored in state whenever fakeInvest is called.
+
+PWA Essentials
+
+Add /app/manifest.webmanifest with app name, theme color, icons.
+
+Link manifest in root layout; include icons in /app/icons.
+
+Enable Next.js appDir and static export capability (next.config.js with output: 'export' if you want a fully static export; otherwise standard Vercel deploy is fine).
+
+Styling & UX
+
+Mobile-first; tap targets ≥ 44px; WCAG AA contrast.
+
+Use Tailwind + shadcn/ui Cards, Buttons, Tabs, Dialog (modal).
+
+Keep transitions snappy (200–250ms).
+
+Commands
+# scaffold
+npx create-next-app@latest glassbox --typescript --tailwind --eslint --app
+cd glassbox
+
+# add deps
+pnpm add recharts zustand class-variance-authority tailwind-merge
+# optional wow
+pnpm add lottie-react
+
+# dev
+pnpm dev
+
+# build (static export optional)
+pnpm build
+pnpm next export   # if you want pure static files in /out
+
+Acceptance Criteria (demo must pass)
+
+User completes Welcome → SDG → Discover → Fund → Invest (demo) → Success → Dashboard.
+
+Radar chart reflects chosen SDGs (visual only; numbers can be simple mappings).
+
+Pressing Invest now (demo) increments Total invested and persists via localStorage.
+
+Dashboard shows updated equivalencies using formulas above.
+
+“Our Vetting” modal displays the 3 trust bullets exactly as written.
+
+App is installable as a PWA (manifest + icons present).
+
+Out of Scope (explicit)
+
+Auth, user accounts, payments, webhooks, real KYC, server/database, charity/admin portals.
+
+Build exactly this.
+On completion, provide:
+
+Vercel preview URL
+
+5 screenshots (Welcome, SDG, Fund Detail + Vetting modal, Success, Dashboard)
+
+JSON dump of localStorage keys/values after one fake investment.

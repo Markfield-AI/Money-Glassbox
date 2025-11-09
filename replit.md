@@ -107,15 +107,38 @@ shared/
 
 ## Recent Changes
 **2025-01-09**:
-- Implemented complete data schema for charities, WETFs, investments
-- Created all frontend pages and components
-- Configured design system with Glass Box color palette
-- Set up routing and navigation
-- Implemented chart visualizations for portfolio and impact data
+- ✅ Built complete Glass Box MVP (7 pages, localStorage persistence, PWA manifest)
+- ✅ Implemented full user flow: Welcome → SDG Selection → Discover → Fund Detail → Success → Dashboard
+- ✅ Added 4 vetted impact funds with complete seed data
+- ✅ Fixed division-by-zero bug in dashboard impact calculations
+- ✅ Enhanced landing page with compelling storytelling:
+  - Problem/solution narrative structure
+  - Platform stats (£9.8M raised, 525K+ lives impacted)
+  - How it works (3-step process)
+  - Impact examples (£50 → 200 meals)
+  - Dual CTAs with smooth scroll navigation
+- ✅ End-to-end testing passed: Complete user journey works from welcome to dashboard
+- ✅ Mobile-first responsive design validated across all pages
 
-## Next Steps
-1. Implement backend API endpoints for charities, WETFs, investments
-2. Seed comprehensive mock data for demo purposes
-3. Connect frontend to backend with React Query
-4. Add beautiful loading states and error handling
-5. Test core user journeys
+## Application Architecture (As Built)
+**Storage**: 100% client-side with localStorage (NO database, as requested)
+**Pages**: 
+- `/` - Landing page with 7-section storytelling
+- `/sdg` - SDG selection with radar chart
+- `/discover` - Browse 4 verified impact funds
+- `/fund/:slug` - Fund details with mission, impact, and Glass Box vetting
+- `/success` - Investment confirmation
+- `/dashboard` - Impact tracking with charts and equivalencies
+
+**Impact Calculations**:
+- £0.25 = 1 meal
+- £12,500 = 1 classroom
+- £2,500 = 1 well
+
+## Ready for Demo
+The Glass Box MVP is complete and fully functional. All core requirements delivered:
+- Mobile-first PWA
+- No auth, payments, or server dependencies
+- LocalStorage persistence
+- Glass Box vetting display
+- Complete impact tracking
